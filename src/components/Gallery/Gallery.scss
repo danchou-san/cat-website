@@ -1,0 +1,21 @@
+.button {
+  background: none;
+  border: none;
+  padding: 0;
+  outline: inherit;
+  background-color: #954c75;
+  color: white;
+  padding: 30px;
+  border-radius: 10px;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.catImage {
+  height: 500px;
+}
+
+.optionsDiv {
+  display: flex;
+  justify-content: space-evenly;
+}
