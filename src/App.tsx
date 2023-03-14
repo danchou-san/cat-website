@@ -8,6 +8,7 @@ import Home from './components/Home/Home';
 import Gallery from './components/Gallery/Gallery';
 import About from './components/About/About';
 import NotFound from './components/NotFound';
+import Favorites from './components/Favorites/Favorites';
 
 function App() {
   const emotion = useSelector((state: RootState) => state.app.emotion);
@@ -51,6 +52,7 @@ function App() {
         <Route path="/" element={ <Home /> }/>
         <Route path="/gallery" element={ <Gallery /> }/>
         <Route path="/about" element={ <About />} />
+        <Route path="/favorites" element={ <Favorites />} />
         <Route path='*' element={<NotFound />}/>
       </Routes>
     </div>

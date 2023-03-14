@@ -1,14 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-interface AppState {
+interface GalleryState {
   randomImageUrl: string;
 }
 
-const initialState: AppState = {
+const initialState: GalleryState = {
   randomImageUrl: '',
 }
 
-export const counterSlice = createSlice({
+export const gallerySlice = createSlice({
   name: 'gallery',
   initialState,
   reducers: {
@@ -18,5 +18,5 @@ export const counterSlice = createSlice({
   },
 });
 
-export const { imageUrl } = counterSlice.actions;
-export default counterSlice.reducer;
+export const { imageUrl } = gallerySlice.actions;
+export default gallerySlice.reducer;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { neutral } from '../../reducers/appSlice';
 import { imageUrl } from '../../reducers/gallerySlice';
@@ -10,7 +10,9 @@ const Gallery = () => {
   const dispatch = useDispatch();
   const catImage = useSelector((state: RootState) => state.gallery.randomImageUrl);
 
-  dispatch(neutral());
+  useEffect(() => {
+    dispatch(neutral());
+  }, [dispatch]);
 
   const fetchCat = () => {
     getRandomCat()

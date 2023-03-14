@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import appReducer from './reducers/appSlice';
 import galleryReducer from './reducers/gallerySlice';
+import favoritesReducer from "./reducers/favoritesSlice";
 
 export const store = configureStore({
   reducer: {
     app: appReducer,
-    gallery: galleryReducer
+    gallery: galleryReducer,
+    favorites: favoritesReducer
   },
 });
 

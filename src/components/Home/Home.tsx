@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { neutral } from '../../reducers/appSlice';
 
 const Home = () => {
   const dispatch = useDispatch();
-  dispatch(neutral());
+  
+  useEffect(() => {
+    dispatch(neutral());
+  }, [dispatch]);
 
   return (
     <div className='content'>

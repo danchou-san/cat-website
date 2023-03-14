@@ -27,6 +27,7 @@ app.get('/api/favorites', async (req: Request, res: Response) => {
   const query = 'SELECT * FROM public."User"';
   const data = await pool.query(query);
   const tableRow = data.rows[0].favorites;
+  
   return res
     .send(tableRow);
 });

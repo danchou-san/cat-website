@@ -8,7 +8,7 @@ const initialState: AppState = {
   emotion: 'neutral',
 }
 
-export const counterSlice = createSlice({
+export const appSlice = createSlice({
   name: 'cat',
   initialState,
   reducers: {
@@ -21,5 +21,5 @@ export const counterSlice = createSlice({
   },
 });
 
-export const { neutral, sad } = counterSlice.actions;
-export default counterSlice.reducer;
+export const { neutral, sad } = appSlice.actions;
+export default appSlice.reducer;
