@@ -10,8 +10,9 @@ const NotFound = () => {
   }, [dispatch]);
 
   return (
-    <div>
-      404 :(
+    <div className="content">
+      <h1>404</h1>
+      <p>Page not found :(</p>
     </div>
   );
 };
