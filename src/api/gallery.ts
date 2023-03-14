@@ -4,6 +4,11 @@ const getRandomCat = async () => {
   return data;
 };
 
+const addToFavorites = async (url: string) => {
+  console.log(url);
+}
+
 export {
-  getRandomCat
+  getRandomCat,
+  addToFavorites
 };

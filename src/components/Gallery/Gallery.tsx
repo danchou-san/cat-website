@@ -3,22 +3,39 @@ import { useDispatch, useSelector } from 'react-redux';
 import { neutral } from '../../reducers/appSlice';
 import { imageUrl } from '../../reducers/gallerySlice';
 import './Gallery.scss';
-import { getRandomCat } from '../../api/gallery';
+import { getRandomCat, addToFavorites } from '../../api/gallery';
 import { RootState } from '../../store';
 
 const Gallery = () => {
   const dispatch = useDispatch();
+  const catImage = useSelector((state: RootState) => state.gallery.randomImageUrl);
 
   dispatch(neutral());
 
   const fetchCat = () => {
     getRandomCat()
-    .then(data => dispatch(imageUrl(data[0].url)));
+      .then(data => dispatch(imageUrl(data[0].url)));
   };
 
-  const catImage = useSelector((state: RootState) => state.gallery.randomImageUrl);
+  const onFavorites = () => {
+    addToFavorites(catImage);
+  };
 
-  // console.log(process.env.SECRET_KEY);
+  let imageDiv;
+
+  if (catImage) {
+    imageDiv = 
+    <>
+      <img className="catImage" src={catImage} alt="No cat :("/>
+      <br />
+      <br />
+      <div className="optionsDiv">
+        <button className="button">I like this</button>
+        <button className="button">I dislike this</button>
+        <button className="button" onClick={() => onFavorites()}>Favorite</button>
+      </div>
+    </>
+  }
 
   return (
     <div className="content">
@@ -26,12 +43,7 @@ const Gallery = () => {
       <button className='button' onClick={() => fetchCat()}>Get a random cat!</button>
       <br />
       <br />
-      <img className="catImage" src={catImage} alt="No cat :("/>
-      <div className="optionsDiv">
-        <button className="button">I like this</button>
-        <button className="button">I dislike this</button>
-        <button className="button">Favorite</button>
-      </div>
+      {imageDiv}
     </div>
   );
 };
