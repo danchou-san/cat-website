@@ -9,7 +9,7 @@ const initialState: AppState = {
 }
 
 export const counterSlice = createSlice({
-  name: 'app',
+  name: 'cat',
   initialState,
   reducers: {
     neutral: (state) => {
