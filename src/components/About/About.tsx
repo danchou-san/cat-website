@@ -10,8 +10,8 @@ const About = () => {
   }, [dispatch]);
 
   return (
-    <div>
-      I'm Chunsuke
+    <div className="content">
+      <p>A website about cats, that's it.</p>
     </div>
   );
 };

@@ -10,6 +10,11 @@
   font-size: 30px;
   cursor: pointer;
   margin-top: 50px;
+  transition: 0.5s;
+}
+
+.button:hover {
+  opacity: 0.8;
 }
 
 .randomCatDiv {
@@ -43,4 +48,9 @@
   border-radius: 10px;
   font-size: 20px;
   cursor: pointer;
+  transition: 0.5s;
+}
+
+.optionButton:hover {
+  opacity: 0.5;
 }
