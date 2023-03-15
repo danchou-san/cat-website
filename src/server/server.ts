@@ -18,11 +18,34 @@ app.use(bodyParser.json());
 
 app.use(cors());
 
-app.get('/api/searchcat/:breed/:type/:category', async (req: Request, res: Response) => {
+app.get('/api/searchcat/:breed/:category/:type', async (req: Request, res: Response) => {
   // const { breed, category, type, page } = req.body;
-  const { breed, type, category } = req.params;
+  // const { breed, type, category } = req.params;
+  const { breed, category, type } = req.params;
+  let breedUrl;
+  let categoryUrl;
+  let typeUrl;
+
+  if (breed === 'any') {
+    breedUrl = '';
+  } else {
+    breedUrl = `&breed_ids=${breed}`;
+  }
+
+  if (category === 'any') {
+    categoryUrl = '';
+  } else {
+    categoryUrl = `&category_ids=${category}`;
+  }
+
+  if (category === 'any') {
+    typeUrl = '';
+  } else {
+    typeUrl = `&mime_types=${type}`;
+  }
+  console.log(breedUrl, typeUrl);
   // const response = await fetch(`https://api.thecatapi.com/v1/images/search?limit=10&breed=${breed}&category_ids=${category}&mime_types=${type}&page=${page}`);
-  const response = await fetch(`https://api.thecatapi.com/v1/images/search?limit=10&breed_ids=${breed}`);
+  const response = await fetch(`https://api.thecatapi.com/v1/images/search?limit=10${breedUrl}${typeUrl}`);
   const data = await response.json();
 
   return res

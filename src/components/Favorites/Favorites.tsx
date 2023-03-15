@@ -5,6 +5,8 @@ import { favorites } from '../../reducers/favoritesSlice';
 import { getFavourites, deleteCat } from '../../api/favorites';
 import { RootState } from '../../store';
 import './Favorites.scss';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Favorites = () => {
   const dispatch = useDispatch();
@@ -20,6 +22,7 @@ const Favorites = () => {
 
   const onDelete = (id: string) => {
     deleteCat(id);
+    toast("Successfully deleted a cat!");
   };;
 
   return (
@@ -30,6 +33,7 @@ const Favorites = () => {
           <div id={String(index)} className="cat-div">
             <img className="catImage" src={item} alt="no cat :(" />
             <button className="fav-cat-button" onClick={() => onDelete(String(index+1))}><b>Remove cat</b></button>
+            <ToastContainer />
           </div>
         ))}
       </div>

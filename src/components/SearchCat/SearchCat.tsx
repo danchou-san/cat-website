@@ -4,14 +4,17 @@ import { neutral } from '../../reducers/appSlice';
 import { catUrls } from '../../reducers/searchCatSlice';
 import { getCat } from '../../api/searchcat';
 import { RootState } from '../../store';
+import { addToFavorites } from '../../api/gallery';
 import './SearchCat.scss';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SearchCat = () => {
   const dispatch = useDispatch();
   const [breed, setBreed] = useState('any');
-  const [category, setCategory] = useState('any');
-  const [type, setType] = useState('any');
-  const [page, setPage] = useState('any');
+  const [category, setCategory] = useState('4');
+  const [type, setType] = useState('jpg');
+  const [page, setPage] = useState('');
   const [data, setData] = useState([]);
   const catUrlsState = useSelector((state: RootState) => state.searchCat.catUrls);
 
@@ -58,6 +61,11 @@ const SearchCat = () => {
     handleQuery();
   }
 
+  const onFavorites = async (url: string) => {
+    await addToFavorites(url);
+    toast("Successfully favorited a cat!");
+  };
+
   return (
     <div className="content">
       <h1>Search Cat</h1>
@@ -73,43 +81,29 @@ const SearchCat = () => {
               <option value="kuri">Kurilian</option>
             </select>  
           </div>
-        
-          <div className="filter-box">
-            <label htmlFor="">Category</label>
-            <select onChange={handleCategory}>
-              <option value="any">Any</option>
-              <option value="sunglasses">Sunglasses</option>
-              <option value="hats">Hats</option>
-              <option value="space">Space</option>
-              <option value="ties">Ties</option>
-            </select>
-          </div>
-        </div>
 
-        <div className="filter-right">
           <div className="filter-box">
-            <label htmlFor="">Type</label>
+            <label htmlFor="any">Type</label>
             <select onChange={handleType}>
-              <option value="any">Any</option>
-            </select>
-          </div>
-
-          <div className="filter-box">
-            <label htmlFor="">Page</label>
-            <select onChange={handlePage}>
-              <option value="any">Any</option>
+              {/* <option value="">Any</option> */}
+              <option value="jpg,png">Static</option>
+              <option value="gif">Animated</option>
             </select>
           </div>
         </div>
       </div>
+      <br />
+      <br />
 
       <div className="search-cats">
       {data.map(item => {
         const key = Object.keys(item)[1];
         const value = item[key];
         return (
-          <div key={key}>
-            <img src={value} alt="No cat :("></img>
+          <div key={key} className="cat-div">
+            <img className="catImage" src={value} alt="No cat :("></img>
+            <button className="fav-cat-button" onClick={() => onFavorites(value)}><b>Favorite</b></button>
+            <ToastContainer/>
           </div>
         );
       })}

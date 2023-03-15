@@ -34,9 +34,9 @@ const Gallery = () => {
       <div className="randomCatDiv">
         <img className="catImage" src={catImage} alt="No cat :("/>
         <div className="optionsDiv">
-          <button className="optionButton">I like this cat</button>
-          <button className="optionButton">I dislike this cat</button>
-          <button className="optionButton" onClick={() => onFavorites()}>Favorite</button>
+          <button className="optionButton"><b>I like this cat</b></button>
+          <button className="optionButton"><b>I dislike this cat</b></button>
+          <button className="optionButton" onClick={() => onFavorites()}><b>Favorite</b></button>
         </div>
       </div>
     </>
