@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { neutral } from '../../reducers/appSlice';
 import { catUrls } from '../../reducers/searchCatSlice';
@@ -15,15 +15,17 @@ const SearchCat = () => {
   const [data, setData] = useState([]);
   const catUrlsState = useSelector((state: RootState) => state.searchCat.catUrls);
 
-  const fetchCats = async () => {
-    const response = await fetch(`http://localhost:8080/api/searchcat/${breed}`);
+  const fetchCats = useCallback(async ( ) => {
+    const response = await fetch(`http://localhost:8080/api/searchcat/${breed}/${category}/${type}`);
     const data = await response.json();
     setData(data);
-  };
+  }, [breed, category, type]);
 
   useEffect(() => {
     dispatch(neutral());
-  }, [breed, category, dispatch, page, type, catUrlsState]);
+    fetchCats();
+
+  }, [breed, category, dispatch, page, type, catUrlsState, fetchCats]);
 
   const handleQuery = async () => {
     // await getCat(
@@ -33,7 +35,6 @@ const SearchCat = () => {
     //   page,
     // )
     //   .then(data => dispatch(catUrls(data)));
-    fetchCats();
     console.log(await fetchCats());
   };
 
@@ -66,10 +67,10 @@ const SearchCat = () => {
             <label htmlFor="">Breed</label>
             <select onChange={handleBreed}>
               <option value="any">Any</option>
-              <option value="Abyssinian">Abyssinian</option>
-              <option value="Bengal">Bengal</option>
-              <option value="Chausie">Chausie</option>
-              <option value="Kurilian">Kurilian</option>
+              <option value="abys">Abyssinian</option>
+              <option value="beng">Bengal</option>
+              <option value="chau">Chausie</option>
+              <option value="kuri">Kurilian</option>
             </select>  
           </div>
         

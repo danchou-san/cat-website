@@ -18,11 +18,11 @@ app.use(bodyParser.json());
 
 app.use(cors());
 
-app.get('/api/searchcat/:breed', async (req: Request, res: Response) => {
+app.get('/api/searchcat/:breed/:type/:category', async (req: Request, res: Response) => {
   // const { breed, category, type, page } = req.body;
-  const { breed } = req.params;
+  const { breed, type, category } = req.params;
   // const response = await fetch(`https://api.thecatapi.com/v1/images/search?limit=10&breed=${breed}&category_ids=${category}&mime_types=${type}&page=${page}`);
-  const response = await fetch(`https://api.thecatapi.com/v1/images/search?limit=10&breed=${breed}`);
+  const response = await fetch(`https://api.thecatapi.com/v1/images/search?limit=10&breed_ids=${breed}`);
   const data = await response.json();
 
   return res
